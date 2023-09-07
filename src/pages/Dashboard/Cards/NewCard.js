@@ -1,24 +1,16 @@
 import { useState } from "react";
-import { useCreateCredential } from "../../../hooks/api/useCredentials";
-import { FormStyled, InputStyled, CreateIcon } from "../../../components/Form/StyleForm";
+import { FormStyled, InputStyled } from "../../../components/Form/StyleForm";
 import { Error } from "../../../components/Form/StyleForm";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Main, Title } from "../style";
 import { LabelStyled } from "../../../components/Form/StyleForm";
 import BackAndSave from "../../../components/Dashboard/FowardBackward/BackAndSave";
-import { useCreateNote } from "../../../hooks/api/useNotes";
 import { useCreateCard } from "../../../hooks/api/useCards";
 import { styled } from "styled-components";
-
-// "title": "Cartão Nubank 2",
-//   "name": "Anderson D",
-//   "number": "1231231231231232",
-//   "code": "000",
-//   "date": "2028-05-05",
-//   "password": "0000",
-//   "virtual": false,
-//   "type": "DEBIT"
+import { ButtonStyled } from "../../../components/Form/StyleForm";
+import { ContainerActions, FowardIcon, ReturnIcon, CardSummary } from "./style";
+import { Bloc } from "./UniqueCard";
 
 export default function NewCard() {
     const [stage, setStage] = useState(0);
@@ -53,7 +45,7 @@ export default function NewCard() {
     function back() {
         setStage(stage - 1);
     }
-    console.log(data);
+
     return (
         <Main>
             {stage === 0 &&
@@ -68,7 +60,7 @@ export default function NewCard() {
                         onChange={insertData}
                         onInvalid={(event) => event.target.setCustomValidity('Preencha este campo para continuar.')}
                     />
-                    <button type="submit">Prosseguir</button>
+                    <BackAndNext stage={stage} back={back} path={"/dashboard/cards"}/>
                 </FormStyled>
             }
 
@@ -104,7 +96,7 @@ export default function NewCard() {
                         onChange={insertData}
                         onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
                     />
-                    <button type="submit">Prosseguir</button>
+                    <BackAndNext stage={stage} back={back} />
                 </FormStyled>
             }
 
@@ -130,20 +122,18 @@ export default function NewCard() {
                         onChange={insertData}
                         onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
                     />
-                    <button type="submit">Prosseguir</button>
+                    <BackAndNext stage={stage} back={back} />
                 </FormStyled>
             }
 
             {stage === 3 &&
-                <Submit data={data} setData={setData} />
+                <Submit data={data} setData={setData} back={back} />
             }
-            {/* {stage !== 3 && <button type="submit">Prosseguir</button>} */}
-            {stage !== 0 && <button onClick={back}>Voltar</button>}
         </Main>
     );
 }
 
-function Submit({ data, setData }) {
+function Submit({ data, setData, back }) {
     const { cardError, cardLoading, createCard } = useCreateCard();
     const navigate = useNavigate();
 
@@ -161,7 +151,7 @@ function Submit({ data, setData }) {
     return (
         <>
             <FormStyled onSubmit={create}>
-                <VirtualType>
+                <ContainerCheckbox>
                     <h1 style={{ fontSize: '20px', marginRight: '2%' }}>Virtual:</h1>
                     <h1>Sim</h1>
                     <input
@@ -175,8 +165,8 @@ function Submit({ data, setData }) {
                         checked={data.virtual === false}
                         onChange={() => setData({ ...data, virtual: false })}
                     />
-                </VirtualType>
-                <VirtualType>
+                </ContainerCheckbox>
+                <ContainerCheckbox>
                     <h1 style={{ fontSize: '20px', marginRight: '2%' }}>Tipo:</h1>
                     <h1>Crédito</h1>
                     <input
@@ -199,47 +189,32 @@ function Submit({ data, setData }) {
                         onChange={() => setData({ ...data, type: "BOTH" })}
                     />
 
-                </VirtualType>
-                {/* <span>
-                    <span onClick={() => setData({ ...data, virtual: true })}>Sim</span>
-                    <span onClick={() => setData({ ...data, virtual: false })}>Não</span>
-                </span> */}
-                {/* <LabelStyled htmlFor="type">Tipo:</LabelStyled>
-                <span>
-                    <span onClick={() => setData({ ...data, type: "CREDIT" })}>Crédito</span>
-                    <span onClick={() => setData({ ...data, type: "DEBIT" })}>Débito</span>
-                    <span onClick={() => setData({ ...data, type: "BOTH" })}>Ambos</span>
-                </span> */}
+                </ContainerCheckbox>
                 {cardError && <Error>Você já possui um cartão com esse título.</Error>}
-                <BackAndSave path={"/dashboard/cards"} />
+                <BackAndSave path={"/dashboard/cards"} titleBack="< Sair" />
             </FormStyled>
 
-
-
-
-
-
-
-
-
-
-
-
-            <div> RESUMO --------------------
-                <h1>Título: {data.title}</h1>
-                <h1>Nome: {data.name}</h1>
-                <h1>Número: {data.number}</h1>
-                <h1>CVV: {data.code}</h1>
-                <h1>Validade: {data.date}</h1>
-                <h1>Senha: {data.password}</h1>
-                <h1>Virtual: {data.virtual ? "Sim" : "Não"}</h1>
-                <h1>Tipo: {data.type === "CREDIT" ? "Crédito" : `${data.type === "DEBIT" ? "Débito" : "Ambos"}`}</h1>
-            </div>
+            <CardSummary>
+                <h1>RESUMO:</h1>
+                <div>
+                    <Bloc title={"Título"} value={data.title} />
+                    <Bloc title={"Nome"} value={data.name} />
+                    <Bloc title={"Número"} value={data.number} />
+                    <Bloc title={"CVV"} value={data.code} />
+                </div>
+                <div>
+                    <Bloc title={"Validade"} value={data.date} />
+                    <Bloc title={"Senha"} value={data.password} />
+                    <Bloc title={"Virtual"} value={data.virtual === "" ? "---" : `${data.virtual ? "Sim" : "Não"}`} />
+                    <Bloc title={"Tipo"} value={data.type === "CREDIT" ? "Crédito" : `${data.type === "DEBIT" ? "Débito" : `${data.type === "" ? "---" : "Ambos"}`}`} />
+                </div>
+                <ButtonStyled onClick={back}> <ReturnIcon /> Voltar</ButtonStyled>
+            </CardSummary>
         </>
     );
 }
 
-const VirtualType = styled.div`
+const ContainerCheckbox = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
@@ -247,3 +222,12 @@ const VirtualType = styled.div`
         font-size: 18px;
     }
 `;
+
+function BackAndNext({ stage, back, path = null }) {
+    return (
+        <ContainerActions>
+            {stage !== 0 ? <ButtonStyled onClick={back}> <ReturnIcon /></ButtonStyled> : <Link to={path}>Sair</Link>}
+            {stage === 3 ? '' : <ButtonStyled type="submit"><FowardIcon /></ButtonStyled>}
+        </ContainerActions>
+    );
+}

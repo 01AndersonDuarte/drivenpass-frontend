@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDeleteCredential, useGetCredentialById } from "../../../hooks/api/useCredentials";
 import { LoadingCircle } from "../../../components/Loading/Loading";
-import { Main, Title, Value, BlocMain } from "../style";
+import { Main, Title, Value, BlocMain, LoadingContainer } from "../style";
 import BackAndDelete from "../../../components/Dashboard/FowardBackward/BackAndDelete";
 
 export default function UniqueCredential() {
@@ -10,7 +10,11 @@ export default function UniqueCredential() {
     const { deleteCredential } = useDeleteCredential();
 
     if (credentialLoading) {
-        return <LoadingCircle />
+        return (
+            <LoadingContainer>
+                <LoadingCircle />
+            </LoadingContainer>
+        );
     }
     return (
         <Main>
@@ -18,7 +22,7 @@ export default function UniqueCredential() {
             <Bloc title={'URL'} value={credentialData.url} />
             <Bloc title={'Usuário'} value={credentialData.username} />
             <Bloc title={'Senha'} value={credentialData.password} />
-            <BackAndDelete path={"/dashboard/credentials"} id={credentialData.id} act={deleteCredential}/>
+            <BackAndDelete path={"/dashboard/credentials"} id={credentialData.id} act={deleteCredential} />
         </Main>
     );
 

@@ -3,8 +3,9 @@ import { LoadingCircle } from "../../../components/Loading/Loading";
 import useGetNotes from "../../../hooks/api/useNotes";
 import Note from "../../../components/Dashboard/Navigation/Note";
 import BackAndAdd from "../../../components/Dashboard/FowardBackward/BackAndAdd";
-import { ContainerItems } from "../style";
+import { ContainerItems, LoadingContainer } from "../style";
 import { useEffect } from "react";
+import PageEmpty from "../../../components/Dashboard/PageEmpty";
 
 export default function Notes() {
     const location = useLocation();
@@ -21,14 +22,16 @@ export default function Notes() {
 
     if (notesLoading) {
         return (
-            <LoadingCircle></LoadingCircle>
+            <LoadingContainer>
+                <LoadingCircle/>
+            </LoadingContainer>
         )
     }
     return (
         <>
             {isActive('/dashboard/notes') &&
                 <>
-                    <LoadNotes data={notesData} />
+                    {notesData.length===0 ? <PageEmpty/> : <LoadNotes data={notesData} />}
                     <BackAndAdd pathReturn={"/dashboard"} pathAvance={"/dashboard/notes/new-note"} />
                 </>
             }

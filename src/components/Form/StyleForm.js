@@ -54,12 +54,12 @@ export const ButtonStyled = styled.button`
     border: none;
     font-weight: 700;
 
-    background-color: #2382A0;
+    background-color: #111136;
     color: #ffffff;
     font-size: 18px;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     cursor: pointer;
 

@@ -1,16 +1,21 @@
 import { LoadingCircle } from "../../../components/Loading/Loading";
 import { useDeleteCard, useGetCardById } from "../../../hooks/api/useCards";
-import { Main, Title, Value, BlocMain } from "../style";
+import { Main, Title, Value, BlocMain, LoadingContainer } from "../style";
 import BackAndDelete from "../../../components/Dashboard/FowardBackward/BackAndDelete";
 import { useParams } from "react-router-dom";
 
-export default function UniqueCard(){
+export default function UniqueCard() {
     const { id } = useParams();
     const { cardData, cardLoading } = useGetCardById(id);
     const { deleteCard } = useDeleteCard();
 
     if (cardLoading) {
-        return <LoadingCircle />
+        return (
+            <LoadingContainer>
+                <LoadingCircle />
+            </LoadingContainer>
+        );
+
     }
     return (
         <Main>
@@ -22,13 +27,13 @@ export default function UniqueCard(){
             <Bloc title={'Senha'} value={cardData.password} />
             <Bloc title={'Meio de uso'} value={cardData.virtual} />
             <Bloc title={'Tipo'} value={cardData.type} />
-            <BackAndDelete path={"/dashboard/cards"} id={cardData.id} act={deleteCard}/>
+            <BackAndDelete path={"/dashboard/cards"} id={cardData.id} act={deleteCard} />
         </Main>
     );
 
 }
 
-function Bloc({ title, value }) {
+export function Bloc({ title, value }) {
     return (
         <BlocMain>
             <Title size={'18px'}>{title}:</Title>

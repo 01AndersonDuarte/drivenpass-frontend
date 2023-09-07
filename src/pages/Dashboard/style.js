@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Main = styled.div`
     width: 100%;
-    height: auto;
+    max-height: 400px;
     padding: 2%;
     line-height: 40px;
+    overflow-y: auto;
 `;
 
 export const BlocMain = styled.div`
@@ -34,4 +35,16 @@ export const Title = styled.h1`
     font-size: ${({ size }) => size && size};
     font-weight: 900;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+`;
+
+export const LoadingContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 25%;
+    /* bottom: 0; */
+    right: 0;
+    left: 0;
 `;

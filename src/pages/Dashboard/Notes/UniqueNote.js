@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { LoadingCircle } from "../../../components/Loading/Loading";
-import { Main, Title, Value, BlocMain } from "../style";
+import { Main, Title, Value, BlocMain, LoadingContainer } from "../style";
 import { useDeleteNote, useGetNoteById } from "../../../hooks/api/useNotes";
 import BackAndDelete from "../../../components/Dashboard/FowardBackward/BackAndDelete";
 
@@ -11,7 +11,11 @@ export default function UniqueNote() {
 
 
     if(noteLoading){
-        return <LoadingCircle/>
+        return(
+            <LoadingContainer>
+                <LoadingCircle/>
+            </LoadingContainer>
+        );
     }
     return (
         <Main>

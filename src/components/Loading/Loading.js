@@ -47,7 +47,7 @@ export function LoadingCircle() {
         <TailSpin
             height="60"
             width="60"
-            color="#ccac00"
+            color="#111136"
             ariaLabel="tail-spin-loading"
             radius="1"
             // wrapperStyle={{}}

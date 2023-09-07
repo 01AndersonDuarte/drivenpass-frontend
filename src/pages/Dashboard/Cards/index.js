@@ -1,11 +1,11 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { LoadingCircle } from "../../../components/Loading/Loading";
-import useGetNotes from "../../../hooks/api/useNotes";
 import Note from "../../../components/Dashboard/Navigation/Note";
 import BackAndAdd from "../../../components/Dashboard/FowardBackward/BackAndAdd";
-import { ContainerItems } from "../style";
+import { ContainerItems, LoadingContainer } from "../style";
 import { useEffect } from "react";
 import useGetCards from "../../../hooks/api/useCards";
+import PageEmpty from "../../../components/Dashboard/PageEmpty";
 
 export default function Cards() {
     const location = useLocation();
@@ -14,7 +14,7 @@ export default function Cards() {
     useEffect(() => {
         cards();
         // eslint-disable-next-line
-      }, [location]);
+    }, [location]);
 
     function isActive(buttonPath) {
         return location.pathname === buttonPath;
@@ -22,14 +22,16 @@ export default function Cards() {
 
     if (cardsLoading) {
         return (
-            <LoadingCircle></LoadingCircle>
+            <LoadingContainer>
+                <LoadingCircle/>
+            </LoadingContainer>
         )
     }
     return (
         <>
             {isActive('/dashboard/cards') &&
                 <>
-                    <LoadNotes data={cardsData} />
+                    {cardsData.length === 0 ? <PageEmpty /> : <LoadNotes data={cardsData} />}
                     <BackAndAdd pathReturn={"/dashboard"} pathAvance={"/dashboard/cards/new-card"} />
                 </>
             }
