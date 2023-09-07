@@ -14,6 +14,7 @@ import NewCredential from "./pages/Dashboard/Credentials/NewCredential";
 import NewNote from "./pages/Dashboard/Notes/NewNote";
 import UniqueCard from "./pages/Dashboard/Cards/UniqueCard";
 import NewCard from "./pages/Dashboard/Cards/NewCard";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={<SignIn />} />
-            {/* <Route path="/sign-up" element={} /> */}
+            <Route path="/sign-up" element={SignUp} />
             <Route
               path="/dashboard"
               element={
