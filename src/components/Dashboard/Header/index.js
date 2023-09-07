@@ -70,7 +70,7 @@ const Logo = styled.div`
         width: 80%;
     }
 `;
-const PadlockIcon = styled(IoIosLock)`
+export const PadlockIcon = styled(IoIosLock)`
     width: 60px;
     height: auto;
     color: #111136;

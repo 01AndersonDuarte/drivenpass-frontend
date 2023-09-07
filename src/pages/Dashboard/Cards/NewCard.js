@@ -145,7 +145,7 @@ function Submit({ data, setData, back }) {
         event.preventDefault();
         if (data.type === "" || data.virtual === "") return toast(<Error>Todos os dados precisam ser preenchidos!</Error>);
         try {
-            const response = await createCard(data);
+            await createCard(data);
             toast("Registro criado com sucesso!");
             navigate("/dashboard/cards");
         } catch (error) {
