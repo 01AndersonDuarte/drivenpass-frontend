@@ -84,7 +84,8 @@ export default function NewCard() {
                         required
                         value={data.number}
                         onChange={insertData}
-                        onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
+                        pattern="\d{13,16}"
+                        onInvalid={(event) => event.target.setCustomValidity('Campo inválido! Somente números de cartões de 13 a 16 dígitos.')}
                     />
                     <LabelStyled htmlFor="code">CVV:</LabelStyled>
                     <InputStyled
@@ -94,7 +95,8 @@ export default function NewCard() {
                         required
                         value={data.code}
                         onChange={insertData}
-                        onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
+                        pattern="\d{3}"
+                        onInvalid={(event) => event.target.setCustomValidity('Campo inválido. O código precisa ter 3 digítos!')}
                     />
                     <BackAndNext stage={stage} back={back} />
                 </FormStyled>
@@ -110,7 +112,8 @@ export default function NewCard() {
                         required
                         value={data.date}
                         onChange={insertData}
-                        onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
+                        pattern="\d{4}-\d{2}-\d{2}"
+                        onInvalid={(event) => event.target.setCustomValidity('Preencha com uma data válida. Ex: ANO-MÊS-DIA (2030-05-30)')}
                     />
                     <LabelStyled htmlFor="password">Senha:</LabelStyled>
                     <InputStyled
@@ -120,7 +123,8 @@ export default function NewCard() {
                         required
                         value={data.password}
                         onChange={insertData}
-                        onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
+                        pattern="\d{4}"
+                        onInvalid={(event) => event.target.setCustomValidity('Campo inválido. A senha precisa ter 4 digítos!')}
                     />
                     <BackAndNext stage={stage} back={back} />
                 </FormStyled>
