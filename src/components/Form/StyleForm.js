@@ -1,10 +1,10 @@
 import styled from "styled-components"
-import { BsCheckCircleFill } from "react-icons/bs"
 
 export const FormStyled = styled.form`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    /* justify-content: center; */
 
     width: 100%;
     gap: 10px;
@@ -14,7 +14,7 @@ export const FormStyled = styled.form`
     } */
 `;
 export const InputStyled = styled.input`
-    width: 100%;
+    width: 50%;
     height: 45px;
 
     border: solid 1px rgba(212, 212, 212, 1);
@@ -48,7 +48,7 @@ export const LabelStyled = styled.label`
 `;
 
 export const ButtonStyled = styled.button`
-    width: 100%;
+    width: 50%;
     height: 45px;
     border-radius: 5px;
     border: none;
