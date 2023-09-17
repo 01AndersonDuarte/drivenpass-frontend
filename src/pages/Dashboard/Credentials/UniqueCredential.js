@@ -7,7 +7,7 @@ import BackAndDelete from "../../../components/Dashboard/FowardBackward/BackAndD
 export default function UniqueCredential() {
     const { id } = useParams();
     const { credentialData, credentialLoading, credential } = useGetCredentialById(id);
-    const { deleteCredential } = useDeleteCredential();
+    const { deleteCredential, credentialLoadingDelete } = useDeleteCredential();
 
     if (credentialLoading) {
         return (
@@ -22,7 +22,7 @@ export default function UniqueCredential() {
             <Bloc title={'URL'} value={credentialData.url} />
             <Bloc title={'Usuário'} value={credentialData.username} />
             <Bloc title={'Senha'} value={credentialData.password} />
-            <BackAndDelete path={"/dashboard/credentials"} id={credentialData.id} act={deleteCredential} />
+            <BackAndDelete path={"/dashboard/credentials"} id={credentialData.id} act={deleteCredential} loading={credentialLoadingDelete} />
         </Main>
     );
 

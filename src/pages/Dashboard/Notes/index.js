@@ -32,7 +32,7 @@ export default function Notes() {
             {isActive('/dashboard/notes') &&
                 <>
                     {notesData.length===0 ? <PageEmpty/> : <LoadNotes data={notesData} />}
-                    <BackAndAdd pathReturn={"/dashboard"} pathAvance={"/dashboard/notes/new-note"} />
+                    <BackAndAdd pathReturn={"/dashboard"} pathAvance={"/dashboard/notes/new-note"}/>
                 </>
             }
             <Outlet />

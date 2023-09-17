@@ -7,7 +7,7 @@ import BackAndDelete from "../../../components/Dashboard/FowardBackward/BackAndD
 export default function UniqueNote() {
     const { id } = useParams();
     const { noteData, noteLoading } = useGetNoteById(id);
-    const { deleteNote } = useDeleteNote();
+    const { deleteNote, noteLoadingDelete } = useDeleteNote();
 
 
     if(noteLoading){
@@ -21,7 +21,7 @@ export default function UniqueNote() {
         <Main>
             <Title size={'25px'}>{noteData.title}</Title>
             <Bloc title={'Anotação'} value={noteData.note}/>
-            <BackAndDelete path={"/dashboard/notes"} id={noteData.id} act={deleteNote}/>
+            <BackAndDelete path={"/dashboard/notes"} id={noteData.id} act={deleteNote} loading={noteLoadingDelete}/>
         </Main>
     );
 

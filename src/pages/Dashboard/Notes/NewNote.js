@@ -42,6 +42,7 @@ export default function NewNote() {
                     name="title"
                     id="title"
                     required
+                    disabled={noteLoading}
                     onChange={insertData}
                     onInvalid={(event) => event.target.setCustomValidity('Por favor, insira um título.')}
                 />
@@ -52,11 +53,12 @@ export default function NewNote() {
                     name="note"
                     id="note"
                     required
+                    disabled={noteLoading}
                     onChange={insertData}
                     onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
                 />
 
-                <BackAndSave path={"/dashboard/notes"}/>                
+                <BackAndSave path={"/dashboard/notes"} loading={noteLoading}/>                
                 {noteError && <Error>Você já possui uma nota com esse título.</Error>}
             </FormStyled>
         </Main>

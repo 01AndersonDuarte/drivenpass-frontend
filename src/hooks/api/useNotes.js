@@ -12,10 +12,10 @@ export default function useGetNotes() {
   } = useAsync(() => notesApi.getNotes(token));
 
   return {
-   notesData,
-   notesLoading,
-   notesError,
-   notes
+    notesData,
+    notesLoading,
+    notesError,
+    notes
   };
 }
 
@@ -29,10 +29,10 @@ export function useGetNoteById(id) {
   } = useAsync(() => notesApi.getNote(token, id));
 
   return {
-   noteData,
-   noteLoading,
-   noteError,
-   note
+    noteData,
+    noteLoading,
+    noteError,
+    note
   };
 }
 
@@ -46,23 +46,23 @@ export function useCreateNote() {
   } = useAsync((body) => notesApi.postNote(token, body), false);
 
   return {
-   noteLoading,
-   noteError,
-   createNote
+    noteLoading,
+    noteError,
+    createNote
   };
 }
 
 export function useDeleteNote() {
   const token = useToken();
   const {
-    loading: noteLoading,
+    loading: noteLoadingDelete,
     error: noteError,
     act: deleteNote
   } = useAsync((id) => notesApi.deleteNote(token, id), false);
 
   return {
-   noteLoading,
-   noteError,
-   deleteNote
+    noteLoadingDelete,
+    noteError,
+    deleteNote
   };
 }

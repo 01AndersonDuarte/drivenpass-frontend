@@ -13,10 +13,10 @@ export default function useGetCards() {
   } = useAsync(() => cardsApi.getCards(token));
 
   return {
-   cardsData,
-   cardsLoading,
-   cardsError,
-   cards
+    cardsData,
+    cardsLoading,
+    cardsError,
+    cards
   };
 }
 
@@ -30,10 +30,10 @@ export function useGetCardById(id) {
   } = useAsync(() => cardsApi.getCard(token, id));
 
   return {
-   cardData,
-   cardLoading,
-   cardError,
-   card
+    cardData,
+    cardLoading,
+    cardError,
+    card
   };
 }
 
@@ -46,23 +46,23 @@ export function useCreateCard() {
   } = useAsync((body) => cardsApi.postCard(token, body), false);
 
   return {
-   cardLoading,
-   cardError,
-   createCard
+    cardLoading,
+    cardError,
+    createCard
   };
 }
 
 export function useDeleteCard() {
   const token = useToken();
   const {
-    loading: cardLoading,
+    loading: cardLoadingDelete,
     error: cardError,
     act: deleteCard
   } = useAsync((id) => cardsApi.deleteCard(token, id), false);
 
   return {
-   cardLoading,
-   cardError,
-   deleteCard
+    cardLoadingDelete,
+    cardError,
+    deleteCard
   };
 }

@@ -12,10 +12,10 @@ export default function useGetCredentials() {
   } = useAsync(() => credentialsApi.getCredentials(token));
 
   return {
-   credentialsData,
-   credentialsLoading,
-   credentialsError,
-   credentials
+    credentialsData,
+    credentialsLoading,
+    credentialsError,
+    credentials
   };
 }
 
@@ -29,10 +29,10 @@ export function useGetCredentialById(id) {
   } = useAsync(() => credentialsApi.getCredential(token, id));
 
   return {
-   credentialData,
-   credentialLoading,
-   credentialError,
-   credential
+    credentialData,
+    credentialLoading,
+    credentialError,
+    credential
   };
 }
 
@@ -45,23 +45,23 @@ export function useCreateCredential() {
   } = useAsync((body) => credentialsApi.postCredential(token, body), false);
 
   return {
-   credentialLoading,
-   credentialError,
-   createCredential
+    credentialLoading,
+    credentialError,
+    createCredential
   };
 }
 
 export function useDeleteCredential() {
   const token = useToken();
   const {
-    loading: credentialLoading,
+    loading: credentialLoadingDelete,
     error: credentialError,
     act: deleteCredential
   } = useAsync((id) => credentialsApi.deleteCredential(token, id), false);
 
   return {
-   credentialLoading,
-   credentialError,
-   deleteCredential
+    credentialLoadingDelete,
+    credentialError,
+    deleteCredential
   };
 }

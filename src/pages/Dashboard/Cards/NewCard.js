@@ -3,7 +3,7 @@ import { FormStyled, InputStyled } from "../../../components/Form/StyleForm";
 import { Error } from "../../../components/Form/StyleForm";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import { Main, Title } from "../style";
+import { Main } from "../style";
 import { LabelStyled } from "../../../components/Form/StyleForm";
 import BackAndSave from "../../../components/Dashboard/FowardBackward/BackAndSave";
 import { useCreateCard } from "../../../hooks/api/useCards";
@@ -138,6 +138,7 @@ export default function NewCard() {
 }
 
 function Submit({ data, setData, back }) {
+    // eslint-disable-next-line
     const { cardError, cardLoading, createCard } = useCreateCard();
     const navigate = useNavigate();
 
@@ -161,12 +162,14 @@ function Submit({ data, setData, back }) {
                     <input
                         type="checkbox"
                         checked={data.virtual === true}
+                        disabled={cardLoading}
                         onChange={() => setData({ ...data, virtual: true })}
                     />
                     <h1>Não</h1>
                     <input
                         type="checkbox"
                         checked={data.virtual === false}
+                        disabled={cardLoading}
                         onChange={() => setData({ ...data, virtual: false })}
                     />
                 </ContainerCheckbox>
@@ -176,6 +179,7 @@ function Submit({ data, setData, back }) {
                     <input
                         type="checkbox"
                         checked={data.type === "CREDIT"}
+                        disabled={cardLoading}
                         onChange={() => setData({ ...data, type: "CREDIT" })}
                     />
 
@@ -183,6 +187,7 @@ function Submit({ data, setData, back }) {
                     <input
                         type="checkbox"
                         checked={data.type === "DEBIT"}
+                        disabled={cardLoading}
                         onChange={() => setData({ ...data, type: "DEBIT" })}
                     />
 
@@ -190,12 +195,13 @@ function Submit({ data, setData, back }) {
                     <input
                         type="checkbox"
                         checked={data.type === "BOTH"}
+                        disabled={cardLoading}
                         onChange={() => setData({ ...data, type: "BOTH" })}
                     />
 
                 </ContainerCheckbox>
                 {cardError && <Error>Você já possui um cartão com esse título.</Error>}
-                <BackAndSave path={"/dashboard/cards"} titleBack="< Sair" />
+                <BackAndSave path={"/dashboard/cards"} titleBack="< Sair" loading={cardLoading}/>
             </FormStyled>
 
             <CardSummary>

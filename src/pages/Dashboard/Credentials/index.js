@@ -33,7 +33,7 @@ export default function Credentials() {
         &&
         <>
           {credentialsData.length === 0 ? <PageEmpty /> : <LoadCredentials data={credentialsData} />}
-          <BackAndAdd pathReturn={"/dashboard"} pathAvance={"/dashboard/credentials/new-credential"} />
+          <BackAndAdd pathReturn={"/dashboard"} pathAvance={"/dashboard/credentials/new-credential"}/>
         </>
       }
       <Outlet />

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 export default function UniqueCard() {
     const { id } = useParams();
     const { cardData, cardLoading } = useGetCardById(id);
-    const { deleteCard } = useDeleteCard();
+    const { deleteCard, cardLoadingDelete } = useDeleteCard();
 
     if (cardLoading) {
         return (
@@ -27,7 +27,7 @@ export default function UniqueCard() {
             <Bloc title={'Senha'} value={cardData.password} />
             <Bloc title={'Meio de uso'} value={cardData.virtual} />
             <Bloc title={'Tipo'} value={cardData.type} />
-            <BackAndDelete path={"/dashboard/cards"} id={cardData.id} act={deleteCard} />
+            <BackAndDelete path={"/dashboard/cards"} id={cardData.id} act={deleteCard} loading={cardLoadingDelete} />
         </Main>
     );
 

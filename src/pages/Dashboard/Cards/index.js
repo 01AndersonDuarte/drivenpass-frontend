@@ -32,7 +32,7 @@ export default function Cards() {
             {isActive('/dashboard/cards') &&
                 <>
                     {cardsData.length === 0 ? <PageEmpty /> : <LoadNotes data={cardsData} />}
-                    <BackAndAdd pathReturn={"/dashboard"} pathAvance={"/dashboard/cards/new-card"} />
+                    <BackAndAdd pathReturn={"/dashboard"} pathAvance={"/dashboard/cards/new-card"}/>
                 </>
             }
             <Outlet />

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BsCheckCircleFill } from "react-icons/bs"
 import { IoAddCircle } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti"
+import { Link } from "react-router-dom";
 
 export const BackAndAddBloc = styled.div`
     width: 100%;
@@ -42,4 +43,10 @@ export const AddIcon = styled(IoAddCircle)`
     width: 50px;
     height: 50px;
     color: #111136;
+`;
+
+export const LinkBack = styled(Link)`
+    text-decoration: none;
+    pointer-events: ${({active})=> active && "none"};
+
 `;

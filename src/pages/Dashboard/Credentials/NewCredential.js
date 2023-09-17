@@ -40,6 +40,7 @@ export default function NewCredential() {
                     name="title"
                     id="title"
                     required
+                    disabled={credentialLoading}
                     onChange={insertData}
                     onInvalid={(event) => event.target.setCustomValidity('Por favor, insira um título.')}
                 />
@@ -50,6 +51,7 @@ export default function NewCredential() {
                     name="url"
                     id="url"
                     required
+                    disabled={credentialLoading}
                     onChange={insertData}
                     onInvalid={(event) => event.target.setCustomValidity('Por favor, insira uma URL válida.')}
                 />
@@ -60,6 +62,7 @@ export default function NewCredential() {
                     name="username"
                     id="username"
                     required
+                    disabled={credentialLoading}
                     onChange={insertData}
                     onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
                 />
@@ -70,10 +73,11 @@ export default function NewCredential() {
                     name="password"
                     id="password"
                     required
+                    disabled={credentialLoading}
                     onChange={insertData}
                     onInvalid={(event) => event.target.setCustomValidity('Por favor, preencha este campo.')}
                 />
-                <BackAndSave path={"/dashboard/credentials"}/>                
+                <BackAndSave path={"/dashboard/credentials"} loading={credentialLoading}/>                
                 {credentialError && <Error>Você já possui uma credencial com esse título.</Error>}
             </FormStyled>
         </Main>

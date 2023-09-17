@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { FormStyled, InputStyled, ButtonStyled, Error } from "../../components/Form/StyleForm";
+import { FormStyled, InputStyled, ButtonStyled } from "../../components/Form/StyleForm";
 import { LoadingThreeDots } from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import { ClosedEye, OpenEye, LinkSign, PasswordDiv } from "./style";
@@ -43,6 +43,7 @@ export default function SignForm({ actFunction, login = undefined, path, errorMe
                         type="email"
                         name="email"
                         required
+                        disabled={loading}
                         onChange={insertData}
                         onInvalid={(event) => event.target.setCustomValidity('Por favor, insira um e-mail válido.')}
                     />
@@ -52,6 +53,7 @@ export default function SignForm({ actFunction, login = undefined, path, errorMe
                             type={active ? "text" : "password"}
                             name="password"
                             required
+                            disabled={loading}
                             onChange={insertData}
                             pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_])[0-9a-zA-Z\W_]{8,}$"
                             onInvalid={(event) => event.target.setCustomValidity('Informe uma senha segura. Com letra maiúscula, símbolos e números!')}
