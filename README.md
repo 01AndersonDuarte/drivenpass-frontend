@@ -23,7 +23,7 @@ Implementações futuras para melhorias:
 
 <ul>
     <li>Botão para deletar conta</li>
-    <li>Alterar items cadastrados</li>
+    <li>Alterar itens cadastrados</li>
 </ul>
 
 ## Como utilizar em sua máquina:
