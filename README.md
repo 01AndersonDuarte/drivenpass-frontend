@@ -23,7 +23,20 @@ Implementações futuras para melhorias:
 
 <ul>
     <li>Botão para deletar conta</li>
-    <li>Alterar items cadastrados</li>
+    <li>Alterar itens cadastrados</li>
+</ul>
+
+## Como utilizar em sua máquina:
+
+Para utilizar esse projeto em sua máquina você deve ter clonado o repositório do backend e seguido o passo a passo de instalação, disponível em: <b>https://github.com/01AndersonDuarte/drivenpass-nest-backend</b>
+
+Feito isso siga os passos:
+
+<ul>
+    <li>Clone esse repositório</li>
+    <li>Instale as dependências com <b>npm install</b></li>
+    <li>Configure uma variável de ambiente no .env como <b>REACT_APP_API = http://localhost:3000</b></li>
+    <li>Inicie o backend e depois use <b>npm start</b> nesse frontend</li>
 </ul>
 
 ## Tecnologias utilizadas:
